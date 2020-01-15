@@ -8,7 +8,9 @@
 
 import UIKit
 
-class RootViewController: UIViewController {
+class PhotosViewController: UITableViewController {
+  
+  internal var photosViewModel = [PhotosViewModel]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,13 +24,11 @@ class RootViewController: UIViewController {
   }
   
   private func subviews () {
-    
   }
   private func layout () {
-    
   }
   private func theme () {
-    view.backgroundColor = .red
-    title = "Jamess"
+    view.backgroundColor = StyleKit.Colors.backGroundColor
+    title = StyleKit.Texts.titlePhotosView
   }
 }
