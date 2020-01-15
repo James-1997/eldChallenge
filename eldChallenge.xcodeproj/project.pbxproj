@@ -7,25 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DAF43F023CE9D6A0064E510 /* CoreDataFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAF43EF23CE9D6A0064E510 /* CoreDataFunctions.swift */; };
 		1DEF0D0023CE9728003DFCC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEF0CFF23CE9728003DFCC2 /* AppDelegate.swift */; };
 		1DEF0D0223CE9728003DFCC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEF0D0123CE9728003DFCC2 /* SceneDelegate.swift */; };
-		1DEF0D0423CE9728003DFCC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEF0D0323CE9728003DFCC2 /* ViewController.swift */; };
-		1DEF0D0723CE9728003DFCC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DEF0D0523CE9728003DFCC2 /* Main.storyboard */; };
 		1DEF0D0A23CE9728003DFCC2 /* eldChallenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DEF0D0823CE9728003DFCC2 /* eldChallenge.xcdatamodeld */; };
 		1DEF0D0C23CE972A003DFCC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DEF0D0B23CE972A003DFCC2 /* Assets.xcassets */; };
 		1DEF0D0F23CE972A003DFCC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DEF0D0D23CE972A003DFCC2 /* LaunchScreen.storyboard */; };
+		1DEF0D1723CE9972003DFCC2 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEF0D1623CE9972003DFCC2 /* RootViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1DAF43EF23CE9D6A0064E510 /* CoreDataFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFunctions.swift; sourceTree = "<group>"; };
 		1DEF0CFC23CE9728003DFCC2 /* eldChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eldChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DEF0CFF23CE9728003DFCC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DEF0D0123CE9728003DFCC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1DEF0D0323CE9728003DFCC2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1DEF0D0623CE9728003DFCC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DEF0D0923CE9728003DFCC2 /* eldChallenge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = eldChallenge.xcdatamodel; sourceTree = "<group>"; };
 		1DEF0D0B23CE972A003DFCC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DEF0D0E23CE972A003DFCC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DEF0D1023CE972A003DFCC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DEF0D1623CE9972003DFCC2 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +39,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1DAF43E723CE9CC10064E510 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1DEF0D1623CE9972003DFCC2 /* RootViewController.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1DAF43E823CE9CDC0064E510 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1DAF43E923CE9CE10064E510 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1DAF43EA23CE9D070064E510 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1DAF43F223CE9EAF0064E510 /* Extensions */,
+				1DAF43F123CE9EA10064E510 /* Delegates */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		1DAF43EC23CE9D240064E510 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1DEF0D0B23CE972A003DFCC2 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1DAF43ED23CE9D360064E510 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				1DAF43EF23CE9D6A0064E510 /* CoreDataFunctions.swift */,
+				1DEF0D0823CE9728003DFCC2 /* eldChallenge.xcdatamodeld */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		1DAF43EE23CE9D420064E510 /* CloudFunctions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CloudFunctions;
+			sourceTree = "<group>";
+		};
+		1DAF43F123CE9EA10064E510 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				1DEF0CFF23CE9728003DFCC2 /* AppDelegate.swift */,
+				1DEF0D0123CE9728003DFCC2 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		1DAF43F223CE9EAF0064E510 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1DEF0CF323CE9728003DFCC2 = {
 			isa = PBXGroup;
 			children = (
@@ -58,14 +129,15 @@
 		1DEF0CFE23CE9728003DFCC2 /* eldChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				1DEF0CFF23CE9728003DFCC2 /* AppDelegate.swift */,
-				1DEF0D0123CE9728003DFCC2 /* SceneDelegate.swift */,
-				1DEF0D0323CE9728003DFCC2 /* ViewController.swift */,
-				1DEF0D0523CE9728003DFCC2 /* Main.storyboard */,
-				1DEF0D0B23CE972A003DFCC2 /* Assets.xcassets */,
+				1DAF43E923CE9CE10064E510 /* Model */,
+				1DAF43E823CE9CDC0064E510 /* View */,
+				1DAF43E723CE9CC10064E510 /* ViewModel */,
+				1DAF43EA23CE9D070064E510 /* Utilities */,
+				1DAF43EC23CE9D240064E510 /* Resources */,
+				1DAF43ED23CE9D360064E510 /* Persistence */,
+				1DAF43EE23CE9D420064E510 /* CloudFunctions */,
 				1DEF0D0D23CE972A003DFCC2 /* LaunchScreen.storyboard */,
 				1DEF0D1023CE972A003DFCC2 /* Info.plist */,
-				1DEF0D0823CE9728003DFCC2 /* eldChallenge.xcdatamodeld */,
 			);
 			path = eldChallenge;
 			sourceTree = "<group>";
@@ -130,7 +202,6 @@
 			files = (
 				1DEF0D0F23CE972A003DFCC2 /* LaunchScreen.storyboard in Resources */,
 				1DEF0D0C23CE972A003DFCC2 /* Assets.xcassets in Resources */,
-				1DEF0D0723CE9728003DFCC2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,24 +212,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DEF0D0423CE9728003DFCC2 /* ViewController.swift in Sources */,
+				1DEF0D1723CE9972003DFCC2 /* RootViewController.swift in Sources */,
 				1DEF0D0A23CE9728003DFCC2 /* eldChallenge.xcdatamodeld in Sources */,
 				1DEF0D0023CE9728003DFCC2 /* AppDelegate.swift in Sources */,
 				1DEF0D0223CE9728003DFCC2 /* SceneDelegate.swift in Sources */,
+				1DAF43F023CE9D6A0064E510 /* CoreDataFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1DEF0D0523CE9728003DFCC2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1DEF0D0623CE9728003DFCC2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1DEF0D0D23CE972A003DFCC2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -298,7 +362,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.-robsonJames.eldChallenge";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -316,7 +380,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.-robsonJames.eldChallenge";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
