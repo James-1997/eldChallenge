@@ -29,4 +29,3 @@ extension UIImageView {
     downloaded(from: url, contentMode: mode)
   }
 }
-

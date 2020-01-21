@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class RestUtils {
   static var baseUrl: String = "https://jsonplaceholder.typicode.com"

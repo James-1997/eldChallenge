@@ -13,6 +13,7 @@ class PhotosViewModel {
   public let title: String
   public let url: String
   public let thumbnailUrl: String
+  public var detailImage: UIImage? //TODO: To use in cache with CoreData
   
   init(photo: Photo) {
     self.title = photo.title
