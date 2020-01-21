@@ -10,9 +10,9 @@ import UIKit
 
 class PhotosViewModel {
   
-  private let title: String
-  private let url: String
-  private let thumbnailUrl: String
+  public let title: String
+  public let url: String
+  public let thumbnailUrl: String
   
   init(photo: Photo) {
     self.title = photo.title

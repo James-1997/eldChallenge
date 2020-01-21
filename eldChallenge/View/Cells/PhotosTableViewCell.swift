@@ -12,6 +12,7 @@ class PhotosTableViewCell: UITableViewCell {
   
   private let title = UILabel()
   internal let coverPhoto = UIImageView()
+  public var photoViewModel: PhotosViewModel?
   
   public static let identifier: String = "PhotosTableViewCell"
   
@@ -51,13 +52,18 @@ class PhotosTableViewCell: UITableViewCell {
   }
   
   public func layout() {
-    coverPhoto.anchor(top: self.topAnchor, paddingTop: 8, bottom: nil, paddingBottom: 0, left: self.leadingAnchor, paddingLeft: 8, right: nil, paddingRight: 0, width: 40, height: 40, center: nil)
+    coverPhoto.anchor(top: nil, paddingTop: 0, bottom: nil, paddingBottom: 0, left: self.leftAnchor, paddingLeft: 8, right: nil, paddingRight: 0, width: 40, height: 40, center: (nil, self.centerYAnchor))
   
-    title.anchor(top: self.topAnchor, paddingTop: 10, bottom: self.bottomAnchor, paddingBottom: 10, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 0, height: 0, center: (self.centerXAnchor, self.centerYAnchor))
+    title.anchor(top: self.topAnchor, paddingTop: 3, bottom: self.bottomAnchor, paddingBottom: 3, left: self.coverPhoto.rightAnchor, paddingLeft: 6, right: nil, paddingRight: 0, width: 0, height: 0, center: (self.centerXAnchor, self.centerYAnchor))
   }
   
   public func theme() {
+    self.backgroundColor = .orange
+    title.text = "test Label"
+    title.textColor = .blue
+    coverPhoto.backgroundColor = .yellow
     coverPhoto.translatesAutoresizingMaskIntoConstraints = false
     title.translatesAutoresizingMaskIntoConstraints = false
+//    title.text = photoViewModel?.title
   }
 }

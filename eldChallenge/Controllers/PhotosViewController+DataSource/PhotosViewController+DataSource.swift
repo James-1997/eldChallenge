@@ -9,12 +9,12 @@
 import UIKit
 
 extension PhotosViewController {
-  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-      return UITableViewHeaderFooterView()
-  }
+//  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//    return UITableViewHeaderFooterView()
+//  }
   
   override func numberOfSections(in tableView: UITableView) -> Int {
-      return photosViewModel.count
+    return 1
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -22,9 +22,10 @@ extension PhotosViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as? PhotosTableViewCell else {
-          return UITableViewCell()
-      }
-      return cell
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as? PhotosTableViewCell else {
+      return UITableViewCell()
+    }
+    cell.photoViewModel = photosViewModel[indexPath.row]
+    return cell
   }
 }

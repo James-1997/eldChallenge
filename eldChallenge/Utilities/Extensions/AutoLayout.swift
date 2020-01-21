@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIView {
-  func anchor(top: NSLayoutYAxisAnchor?, paddingTop: CGFloat, bottom: NSLayoutYAxisAnchor?, paddingBottom: CGFloat, left: NSLayoutXAxisAnchor?, paddingLeft: CGFloat, right: NSLayoutXAxisAnchor?, paddingRight: CGFloat, width: CGFloat, height: CGFloat, center:(NSLayoutXAxisAnchor,NSLayoutYAxisAnchor)?) {
+  func anchor(top: NSLayoutYAxisAnchor?, paddingTop: CGFloat, bottom: NSLayoutYAxisAnchor?, paddingBottom: CGFloat, left: NSLayoutXAxisAnchor?, paddingLeft: CGFloat, right: NSLayoutXAxisAnchor?, paddingRight: CGFloat, width: CGFloat, height: CGFloat, center:(NSLayoutXAxisAnchor?,NSLayoutYAxisAnchor?)?) {
     translatesAutoresizingMaskIntoConstraints = false
     if let top = top {
       topAnchor.constraint(equalTo: top, constant: paddingTop).isActive = true
@@ -30,8 +30,12 @@ extension UIView {
       heightAnchor.constraint(equalToConstant: height).isActive = true
     }
     if let center = center {
-      centerXAnchor.constraint(equalTo: center.0).isActive = true
-      centerYAnchor.constraint(equalTo: center.1).isActive = true
+      if let centerX = center.0 {
+        centerXAnchor.constraint(equalTo: centerX).isActive = true
+      }
+      if let centerY = center.1  {
+        centerYAnchor.constraint(equalTo: centerY).isActive = true
+      }
     }
   }
 }
