@@ -14,10 +14,10 @@ extension PhotosViewController {
   }
   
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      return 80
+      return 80 //TODO: Change to SK
   }
   
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-      return 60
+      return 60 //TODO: Change to SK
   }
 }

@@ -8,11 +8,7 @@
 
 import UIKit
 
-extension PhotosViewController {
-//  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//    return UITableViewHeaderFooterView()
-//  }
-  
+extension PhotosViewController {  
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }

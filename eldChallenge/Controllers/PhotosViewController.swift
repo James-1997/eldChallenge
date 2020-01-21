@@ -58,9 +58,9 @@ class PhotosViewController: UITableViewController {
     view.backgroundColor = StyleKit.Colors.backGroundColor
     title = StyleKit.Texts.titlePhotosView
     tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
-    tableView.separatorInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
-    tableView.separatorColor = .white
-    tableView.backgroundColor = .systemGray
+    tableView.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    tableView.separatorColor = .white //TODO: Change to SK
+    tableView.backgroundColor = .white //TODO: Change to SK
     tableView.rowHeight = UITableView.automaticDimension
   }
 }

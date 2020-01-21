@@ -10,9 +10,18 @@ import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
   
-  private let title = UILabel()
+  private let titleLabel = UILabel()
   internal let coverPhoto = UIImageView()
-  public var photoViewModel: PhotosViewModel?
+  public var photoViewModel: PhotosViewModel? {
+    didSet {
+      if let title = photoViewModel?.title {
+        self.titleLabel.text = title
+      }
+      if let url = photoViewModel?.thumbnailUrl {
+        self.coverPhoto.downloaded(from: url)
+      }
+    }
+  }
   
   public static let identifier: String = "PhotosTableViewCell"
   
@@ -28,7 +37,7 @@ class PhotosTableViewCell: UITableViewCell {
   
   override func prepareForReuse() {
     super.prepareForReuse()
-    title.text = ""
+    titleLabel.text = ""
     coverPhoto.image = nil
   }
   
@@ -40,30 +49,31 @@ class PhotosTableViewCell: UITableViewCell {
       super.setSelected(selected, animated: animated)
   }
   
-  public func commonInit() {
+  private func commonInit() {
       subviews()
       layout()
       theme()
   }
   
-  public func subviews() {
-    self.addSubview(title)
+  private func subviews() {
+    self.addSubview(titleLabel)
     self.addSubview(coverPhoto)
   }
   
-  public func layout() {
-    coverPhoto.anchor(top: nil, paddingTop: 0, bottom: nil, paddingBottom: 0, left: self.leftAnchor, paddingLeft: 8, right: nil, paddingRight: 0, width: 40, height: 40, center: (nil, self.centerYAnchor))
+  private func layout() {
+    coverPhoto.anchor(top: nil, paddingTop: 0, bottom: nil, paddingBottom: 0, left: self.leftAnchor, paddingLeft: 8, right: nil, paddingRight: 0, width: 60, height: 60, center: (nil, self.centerYAnchor))
   
-    title.anchor(top: self.topAnchor, paddingTop: 3, bottom: self.bottomAnchor, paddingBottom: 3, left: self.coverPhoto.rightAnchor, paddingLeft: 6, right: nil, paddingRight: 0, width: 0, height: 0, center: (self.centerXAnchor, self.centerYAnchor))
+    titleLabel.anchor(top: self.topAnchor, paddingTop: 3, bottom: self.bottomAnchor, paddingBottom: 3, left: self.coverPhoto.rightAnchor, paddingLeft: 6, right: nil, paddingRight: 0, width: 0, height: 0, center: (self.centerXAnchor, self.centerYAnchor))
   }
   
-  public func theme() {
-    self.backgroundColor = .orange
-    title.text = "test Label"
-    title.textColor = .blue
-    coverPhoto.backgroundColor = .yellow
+  private func theme() {
+    self.backgroundColor = .white //TODO: Change to SK
+    titleLabel.textColor = .black //TODO: Change to SK
+    titleLabel.font = .boldSystemFont(ofSize: 16) //TODO: Change to SK
+    titleLabel.numberOfLines = 0
+    titleLabel.translatesAutoresizingMaskIntoConstraints = false
     coverPhoto.translatesAutoresizingMaskIntoConstraints = false
-    title.translatesAutoresizingMaskIntoConstraints = false
-//    title.text = photoViewModel?.title
+    coverPhoto.layer.masksToBounds = true
+    coverPhoto.layer.cornerRadius = 8 //TODO: Change to SK
   }
 }
