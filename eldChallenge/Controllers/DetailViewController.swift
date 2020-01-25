@@ -18,6 +18,16 @@ class DetailViewController: UIViewController {
     super.viewDidLoad()
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    photoImageView.image = nil
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setImageInBackgroundView()
+  }
+  
   convenience init(image: UIImage?) {
     self.init()
     photo = image
@@ -46,6 +56,10 @@ class DetailViewController: UIViewController {
   }
   private func theme() {
     title = "Detalhes" //TODO: move to SK
+    setImageInBackgroundView()
+  }
+  
+  private func setImageInBackgroundView() {
     guard let photo = self.photo else {
       if let url = photoUrl {
         photoImageView.downloaded(from: url)

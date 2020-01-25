@@ -52,6 +52,8 @@ class PhotosViewController: UITableViewController {
 
 extension PhotosViewController: tableViewActionHandle {
   func reloadDataToTableView() {
-    self.tableView.reloadData()
+    DispatchQueue.main.async {
+      self.tableView.reloadData()
+    }
   }
 }
