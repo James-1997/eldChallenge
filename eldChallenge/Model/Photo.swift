@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class Photo: Decodable {
   public let title: String
@@ -23,5 +24,11 @@ class Photo: Decodable {
     title = try container.decode(String.self, forKey: .title)
     url = try container.decode(String.self, forKey: .url)
     thumbnailUrl = try container.decode(String.self, forKey: .thumbnailUrl)
+  }
+  
+  required init (photo: NSManagedObject) {
+    title = (photo.value(forKey: "title") as! String)
+    thumbnailUrl = (photo.value(forKey: "thumbnailUrl") as! String)
+    url = (photo.value(forKey: "url") as! String)
   }
 }
