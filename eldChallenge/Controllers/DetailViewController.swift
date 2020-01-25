@@ -37,6 +37,7 @@ class DetailViewController: UIViewController {
   convenience init(imageUrl: String) {
     self.init()
     photoUrl = imageUrl
+    photoImageView.backgroundColor = .white //TODO: change to SK
     commonInit()
   }
   
