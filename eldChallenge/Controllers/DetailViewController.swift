@@ -31,9 +31,9 @@ class DetailViewController: UIViewController {
   }
   
   private func commonInit() {
-      subviews()
-      layout()
-      theme()
+    subviews()
+    layout()
+    theme()
   }
   
   private func subviews() {

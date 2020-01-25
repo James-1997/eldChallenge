@@ -12,12 +12,12 @@ class PhotosTableViewCell: UITableViewCell {
   
   private let titleLabel = UILabel()
   internal let coverPhoto = UIImageView()
-  public var photoViewModel: PhotosViewModel? {
+  public var photo: Photo? {
     didSet {
-      if let title = photoViewModel?.title {
+      if let title = photo?.title {
         self.titleLabel.text = title
       }
-      if let url = photoViewModel?.thumbnailUrl {
+      if let url = photo?.thumbnailUrl {
         self.coverPhoto.downloaded(from: url)
       }
     }
@@ -26,13 +26,13 @@ class PhotosTableViewCell: UITableViewCell {
   public static let identifier: String = "PhotosTableViewCell"
   
   override func awakeFromNib() {
-      super.awakeFromNib()
-      commonInit()
+    super.awakeFromNib()
+    commonInit()
   }
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-      super.init(style: style, reuseIdentifier: PhotosTableViewCell.identifier)
-      commonInit()
+    super.init(style: style, reuseIdentifier: PhotosTableViewCell.identifier)
+    commonInit()
   }
   
   override func prepareForReuse() {
@@ -42,17 +42,17 @@ class PhotosTableViewCell: UITableViewCell {
   }
   
   required init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
+    fatalError("init(coder:) has not been implemented")
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
-      super.setSelected(selected, animated: animated)
+    super.setSelected(selected, animated: animated)
   }
   
   private func commonInit() {
-      subviews()
-      layout()
-      theme()
+    subviews()
+    layout()
+    theme()
   }
   
   private func subviews() {
@@ -62,7 +62,7 @@ class PhotosTableViewCell: UITableViewCell {
   
   private func layout() {
     coverPhoto.anchor(top: nil, paddingTop: 0, bottom: nil, paddingBottom: 0, left: self.leftAnchor, paddingLeft: 8, right: nil, paddingRight: 0, width: 60, height: 60, center: (nil, self.centerYAnchor))
-  
+    
     titleLabel.anchor(top: self.topAnchor, paddingTop: 3, bottom: self.bottomAnchor, paddingBottom: 3, left: self.coverPhoto.rightAnchor, paddingLeft: 6, right: nil, paddingRight: 0, width: 0, height: 0, center: (self.centerXAnchor, self.centerYAnchor))
   }
   

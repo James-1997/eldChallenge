@@ -14,14 +14,14 @@ extension PhotosViewController {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return photosViewModel.count
+    return photosViewModel?.photos.count ?? 0
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as? PhotosTableViewCell else {
       return UITableViewCell()
     }
-    cell.photoViewModel = photosViewModel[indexPath.row]
+    cell.photo = photosViewModel?.photos[indexPath.row]
     return cell
   }
 }

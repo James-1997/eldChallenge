@@ -53,7 +53,7 @@ extension UIView {
     self.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
     
     self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -0).isActive = true
-
+    
     self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -0).isActive = true
     
     self.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true

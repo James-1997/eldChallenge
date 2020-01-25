@@ -10,44 +10,29 @@ import UIKit
 
 class PhotosViewController: UITableViewController {
   
-  internal var photosViewModel = [PhotosViewModel]()
-  private let photoManager = PhotoManager.shared
+  internal var photosViewModel: PhotoViewModel?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     commonInit()
-    photoManager.getPhotos()
-    fetchPhotos()
-    addObsercer()
+    setupPhotosViewModel()
   }
   
-  private func addObsercer() {
-    NotificationCenter.default.addObserver(self, selector: #selector(fetchPhotosToTableView), name: .photosSucess, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(error), name: .photosError, object: nil)
-  }
-  
-  @objc func error() {
-    //MARK: errors operation
-  }
-  private func fetchPhotos() {
-    photosViewModel = []
-    let photos = photoManager.photos
-    photos.forEach({ (photo) in
-      let photoVM = PhotosViewModel(photo: photo)
-      photosViewModel.append(photoVM)
-    })
-    DispatchQueue.main.async {
-      self.tableView.reloadData()
+  func setupPhotosViewModel() {
+    photosViewModel = PhotoViewModel()
+    guard let photosVM = photosViewModel else {
+      return
     }
-  }
-  
-  @objc func fetchPhotosToTableView() {
-    fetchPhotos()
+    photosVM.tableVCDelegate = self
+    photosVM.addObserver()
+    photosVM.photoManager.getPhotos()
+    photosVM.fetchPhotos()
   }
   
   private func commonInit() {
-      subviews()
-      layout()
-      theme()
+    subviews()
+    layout()
+    theme()
   }
   
   private func subviews () {
@@ -62,5 +47,11 @@ class PhotosViewController: UITableViewController {
     tableView.separatorColor = .white //TODO: Change to SK
     tableView.backgroundColor = .white //TODO: Change to SK
     tableView.rowHeight = UITableView.automaticDimension
+  }
+}
+
+extension PhotosViewController: tableViewActionHandle {
+  func reloadDataToTableView() {
+    self.tableView.reloadData()
   }
 }
