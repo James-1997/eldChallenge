@@ -26,7 +26,7 @@ class PhotoViewModel {
         let photoCollection = self.photoManager.photos
         photoCollection.forEach({ (photo) in
           self.photos.append(photo)
-          self.photoDataManagerObject.saveInCoreData(photo: photo)
+          self.photoDataManagerObject.savePhotoInCoreData(photo: photo)
         })
       }
     } else {

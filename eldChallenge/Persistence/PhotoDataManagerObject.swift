@@ -27,8 +27,19 @@ enum FilterType: String {
   }
 }
 
+enum CoreDataEntity: String {
+  case Picture
+  
+  var name: String {
+    switch self {
+      case .Picture:
+        return "Picture"
+    }
+  }
+}
+
 class PhotoDataManagerObject {
-  internal enum CoreData: String {
+  internal enum photoAttributes: String {
     case title
     case url
     case thumbnailUrl
@@ -47,17 +58,6 @@ class PhotoDataManagerObject {
           return "smallImage"
         case .detailImage:
           return "detailImage"
-      }
-    }
-  }
-  
-  internal enum CoreDataEntity: String {
-    case picture
-    
-    var name: String {
-      switch self {
-        case .picture:
-          return "Picture"
       }
     }
   }
@@ -97,27 +97,24 @@ class PhotoDataManagerObject {
     }
   }
   
-  public func saveInCoreData(photo: Photo) {
+  public func savePhotoInCoreData(photo: Photo) {
     guard let context = context else {
       return
     }
-    let pictureData = NSEntityDescription.insertNewObject(forEntityName: CoreDataEntity.picture.name, into: context)
-    pictureData.setValue(photo.title, forKey: CoreData.title.Key)
-    pictureData.setValue(photo.thumbnailUrl, forKey:  CoreData.thumbnailUrl.Key)
-    pictureData.setValue(photo.url, forKey:  CoreData.url.Key)
+    let pictureData = NSEntityDescription.insertNewObject(forEntityName: CoreDataEntity.Picture.name, into: context)
+    pictureData.setValue(photo.title,
+                         forKey: photoAttributes.title.Key)
+    pictureData.setValue(photo.thumbnailUrl,
+                         forKey:  photoAttributes.thumbnailUrl.Key)
+    pictureData.setValue(photo.url,
+                         forKey: photoAttributes.url.Key)
     //MARK: Download Image and Convert in Data to placeHolderImage and DetailImage
     
-    do {
-      try context.save()
-      print("sucess to save data!")
-    } catch {
-      let error = error as NSError
-      print("error in save operation! \n erro: \(error), description: \(error.localizedDescription), userInfo: \(error.userInfo)")
-    }
+   appDelegate?.saveContext(operationName: .save)
   }
   
-  public func recoverData() {
-    let requisition = NSFetchRequest<NSFetchRequestResult>(entityName: CoreDataEntity.picture.name)
+  public func recoverData(entityName: CoreDataEntity) {
+    let requisition = NSFetchRequest<NSFetchRequestResult>(entityName: entityName.name)
     do {
       guard let context = context else {
         return
@@ -146,20 +143,14 @@ class PhotoDataManagerObject {
       return
     }
     context.delete(element)
-    do {
-      try context.save()
-      print("sucess in delete operation!")
-    } catch {
-      let error = error as NSError
-      print("error in delete operation! \n erro: \(error), description: \(error.localizedDescription), userInfo: \(error.userInfo)")
-    }
+    appDelegate?.saveContext(operationName: .delete)
   }
   
-  private func deleteByDataFilter(with filterType: FilterType, filterData: String) {
+  private func deleteByDataFilter(with filterType: FilterType, filterData: String, entityName: CoreDataEntity) {
     guard let context = context else {
       return
     }
-    let requisition = NSFetchRequest<NSFetchRequestResult>(entityName: CoreDataEntity.picture.name)
+    let requisition = NSFetchRequest<NSFetchRequestResult>(entityName: entityName.name)
     let resultData = NSPredicate(format: filterType.value, filterData)
     requisition.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [resultData])
     do {
@@ -167,17 +158,11 @@ class PhotoDataManagerObject {
       if data.count != 0 {
         let result = data as! [NSManagedObject]
         context.delete(result[0])
-        do {
-          print("Deleted")
-          try context.save()
-        } catch {
-          let error = error as NSError
-          print("Not Deleted \n erro: \(error), description: \(error.localizedDescription), userInfo: \(error.userInfo)")
-        }
+        appDelegate?.saveContext(operationName: .delete)
       }
     } catch {
       let error = error as NSError
-      print("error in delete operetion! \n erro: \(error)")
+      print("error in fetch to delete operetion! \n erro: \(error)")
     }
   }
 }

@@ -25,7 +25,7 @@ class PhotosViewController: UITableViewController {
     }
     photosVM.tableVCDelegate = self
     photosVM.addObserver()
-    photosVM.photoDataManagerObject.recoverData()
+    photosVM.photoDataManagerObject.recoverData(entityName: CoreDataEntity.Picture)
     if photosVM.photoDataManagerObject.photos.isEmpty {
       photosVM.photoManager.getPhotos()
     }
