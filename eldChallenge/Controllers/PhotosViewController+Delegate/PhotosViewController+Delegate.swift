@@ -11,14 +11,8 @@ import UIKit
 extension PhotosViewController {
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let detailViewController: DetailViewController?
-    if let image = photosViewModel?.photos[indexPath.row].detailImage {
-      detailViewController = DetailViewController(image: image)
-    } else {
-      guard let imageUrl = photosViewModel?.photos[indexPath.row].url else {
-        return
-      }
-      detailViewController = DetailViewController(imageUrl: imageUrl)
-    }
+    let image = photosViewModel?.photos[indexPath.row].detailImage
+    detailViewController = DetailViewController(image: image)
     guard let detailVC = detailViewController else {
       return
     }

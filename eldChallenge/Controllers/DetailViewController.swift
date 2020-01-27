@@ -30,15 +30,11 @@ class DetailViewController: UIViewController {
   
   convenience init(image: UIImage?) {
     self.init()
-    photo = image
-    photoImageView.backgroundColor = .white //TODO: change to SK
-    commonInit()
-  }
-  
-  convenience init(imageUrl: String) {
-    self.init()
-    photoUrl = imageUrl
-    photoImageView.backgroundColor = .white //TODO: change to SK
+    if let photo = image {
+      self.photo = photo
+    } else {
+      photoImageView.backgroundColor = .white //TODO: change to SK
+    }
     commonInit()
   }
   
@@ -62,15 +58,11 @@ class DetailViewController: UIViewController {
   }
   
   private func setImageInBackgroundView() {
-    guard let photo = self.photo else {
-      if let url = photoUrl {
-        photoImageView.downloaded(from: url)
-      } else {
-        photoImageView.backgroundColor = .white //TODO: Move to SK
-      }
-      return
+    if let photo = self.photo {
+      photoImageView.image = photo
+    } else {
+      photoImageView.backgroundColor = .white //TODO: Move to SK
     }
-    photoImageView.image = photo
   }
 }
 

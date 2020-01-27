@@ -26,7 +26,6 @@
 		1DEF0D0C23CE972A003DFCC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DEF0D0B23CE972A003DFCC2 /* Assets.xcassets */; };
 		1DEF0D0F23CE972A003DFCC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DEF0D0D23CE972A003DFCC2 /* LaunchScreen.storyboard */; };
 		1DEF0D1723CE9972003DFCC2 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEF0D1623CE9972003DFCC2 /* PhotosViewController.swift */; };
-		1DF0DE4923D6970B001312FC /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0DE4823D6970B001312FC /* UIImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +50,6 @@
 		1DEF0D0E23CE972A003DFCC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DEF0D1023CE972A003DFCC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DEF0D1623CE9972003DFCC2 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
-		1DF0DE4823D6970B001312FC /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +154,6 @@
 			children = (
 				1D3FAEE723CECA3D00B877B9 /* AutoLayout.swift */,
 				1D118EB923CED0C8005E13D0 /* NotificationName.swift */,
-				1DF0DE4823D6970B001312FC /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -293,7 +290,6 @@
 				1D3FAEE623CEC3A900B877B9 /* PhotosViewController+Delegate.swift in Sources */,
 				1D3FAEDE23CEBE3500B877B9 /* RestUtils.swift in Sources */,
 				1D3FAEE323CEC38900B877B9 /* PhotosViewController+DataSource.swift in Sources */,
-				1DF0DE4923D6970B001312FC /* UIImage.swift in Sources */,
 				1DAF43F923CEB52B0064E510 /* PhotosTableViewCell.swift in Sources */,
 				1DEF0D0023CE9728003DFCC2 /* AppDelegate.swift in Sources */,
 				1DEF0D0223CE9728003DFCC2 /* SceneDelegate.swift in Sources */,

@@ -17,8 +17,8 @@ class PhotosTableViewCell: UITableViewCell {
       if let title = photo?.title {
         self.titleLabel.text = title
       }
-      if let url = photo?.thumbnailUrl {
-        self.coverPhoto.downloaded(from: url)
+      if let detailImage = photo?.detailImage {
+        self.coverPhoto.image = detailImage
       }
     }
   }

@@ -41,6 +41,11 @@ class RestUtils {
     self.makeRequest(url: url, method: .put, body: body, completionHandler: completionHandler)
   }
   
+  static public func getImageData(from urlString: String, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+    guard let url = URL(string: urlString) else { return }
+    URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+  }
+  
   static private func makeRequest(url: URL,
                                   method: HttpMethods,
                                   body: Data?,

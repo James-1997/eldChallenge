@@ -13,7 +13,7 @@ enum coreDataOperation: String {
   
   case delete
   case save
-  case refresh
+  case update
   case unknown
   
   var name: String {
@@ -22,7 +22,7 @@ enum coreDataOperation: String {
         return "DELETE"
       case .save:
         return "SAVE"
-      case .refresh:
+      case .update:
         return "UPDATE"
       case .unknown:
         return "UNKNOWN"

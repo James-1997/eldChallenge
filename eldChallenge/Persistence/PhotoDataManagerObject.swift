@@ -38,29 +38,30 @@ enum CoreDataEntity: String {
   }
 }
 
-class PhotoDataManagerObject {
-  internal enum photoAttributes: String {
-    case title
-    case url
-    case thumbnailUrl
-    case placeHolderImage
-    case detailImage
-    
-    var Key: String {
-      switch self {
-        case .title:
-          return "title"
-        case .url:
-          return "url"
-        case .thumbnailUrl:
-          return "thumbnailUrl"
-        case .placeHolderImage:
-          return "smallImage"
-        case .detailImage:
-          return "detailImage"
-      }
+enum PhotoAttributes: String {
+  case title
+  case url
+  case thumbnailUrl
+  case placeHolderImage
+  case detailImage
+  
+  var Key: String {
+    switch self {
+      case .title:
+        return "title"
+      case .url:
+        return "url"
+      case .thumbnailUrl:
+        return "thumbnailUrl"
+      case .placeHolderImage:
+        return "smallImage"
+      case .detailImage:
+        return "detailImage"
     }
   }
+}
+
+class PhotoDataManagerObject {
   
   internal let appDelegate: AppDelegate?
   internal var context: NSManagedObjectContext?
@@ -97,20 +98,19 @@ class PhotoDataManagerObject {
     }
   }
   
-  public func savePhotoInCoreData(photo: Photo) {
+  public func savePhotoInCoreData(photo: Photo, entity: CoreDataEntity = .Picture) {
     guard let context = context else {
       return
     }
-    let pictureData = NSEntityDescription.insertNewObject(forEntityName: CoreDataEntity.Picture.name, into: context)
-    pictureData.setValue(photo.title,
-                         forKey: photoAttributes.title.Key)
-    pictureData.setValue(photo.thumbnailUrl,
-                         forKey:  photoAttributes.thumbnailUrl.Key)
-    pictureData.setValue(photo.url,
-                         forKey: photoAttributes.url.Key)
-    //MARK: Download Image and Convert in Data to placeHolderImage and DetailImage
+    let pictureData = NSEntityDescription.insertNewObject(forEntityName: entity.name, into: context)
     
-   appDelegate?.saveContext(operationName: .save)
+    pictureData.setValue(photo.title,
+                         forKey: PhotoAttributes.title.Key)
+    pictureData.setValue(photo.thumbnailUrl,
+                         forKey:  PhotoAttributes.thumbnailUrl.Key)
+    pictureData.setValue(photo.url,
+                         forKey: PhotoAttributes.url.Key)
+    appDelegate?.saveContext(operationName: .save)
   }
   
   public func recoverData(entityName: CoreDataEntity) {
@@ -128,9 +128,9 @@ class PhotoDataManagerObject {
       }
       if !self.photosData.isEmpty {
         print("Sucess in data recover! \n It's \(photosData.count) objects in persistence!")
-        converteDataInObject()
+//        converteDataInObject()
       } else {
-         print("You don't have data in Persistence")
+        print("You don't have data in Persistence")
       }
     } catch {
       let error = error as NSError
@@ -150,19 +150,26 @@ class PhotoDataManagerObject {
     guard let context = context else {
       return
     }
+    guard let element = filterInCoreData(entityName: entityName, with: filterType, the: filterData, context: context) else { return }
+    context.delete(element)
+    appDelegate?.saveContext(operationName: .delete)
+  }
+  
+  private func filterInCoreData(entityName: CoreDataEntity, with filterType: FilterType,the attributeKey: String, context: NSManagedObjectContext) -> NSManagedObject? {
     let requisition = NSFetchRequest<NSFetchRequestResult>(entityName: entityName.name)
-    let resultData = NSPredicate(format: filterType.value, filterData)
+    let resultData = NSPredicate(format: filterType.value, attributeKey)
     requisition.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [resultData])
     do {
       let data = try context.fetch(requisition)
       if data.count != 0 {
         let result = data as! [NSManagedObject]
-        context.delete(result[0])
-        appDelegate?.saveContext(operationName: .delete)
+        return result.first
       }
     } catch {
       let error = error as NSError
       print("error in fetch to delete operetion! \n erro: \(error)")
+      return nil
     }
+    return nil
   }
 }
