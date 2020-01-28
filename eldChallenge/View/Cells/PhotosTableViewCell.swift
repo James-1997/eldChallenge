@@ -17,8 +17,10 @@ class PhotosTableViewCell: UITableViewCell {
       if let title = photo?.title {
         self.titleLabel.text = title
       }
-      if let detailImage = photo?.detailImage {
-        self.coverPhoto.image = detailImage
+      if let placeHolderImage = photo?.placeHolderImage {
+        self.coverPhoto.image = placeHolderImage
+      } else {
+        self.coverPhoto.image = UIImage(named: "ErrorPhoto")
       }
     }
   }
