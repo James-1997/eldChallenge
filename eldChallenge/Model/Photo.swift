@@ -33,6 +33,8 @@ class Photo: Decodable {
     title = (photo.value(forKey: "title") as! String)
     thumbnailUrl = (photo.value(forKey: "thumbnailUrl") as! String)
     url = (photo.value(forKey: "url") as! String)
+    downloadDetailImage()
+    downloadPlaceHolder()
   }
   
   private func downloadDetailImage() {
@@ -96,10 +98,7 @@ class Photo: Decodable {
 //        guard let image = UIImage(data: data) else {
 //          return
 //        }
-//        self.detailImageData = data as NSData
 //        self.detailImage = image
-//        self.setValue(self.detailImageData,
-//        forKey: PhotoAttributes.detailImageData.Key)
 //      } else if let err = error {
 //        print("error in DetailImage Download:\(err.description)")
 //      }
@@ -115,10 +114,7 @@ class Photo: Decodable {
 //        guard let image = UIImage(data: data) else {
 //          return
 //        }
-//        self.placeHolderImageData = data as NSData
 //        self.placeHolderImage = image
-//        self.setValue(self.placeHolderImageData,
-//                      forKey: PhotoAttributes.placeHolderImage.Key)
 //      } else if let err = error {
 //        print("error in PlaceHolder Download:\(err.description)")
 //      }

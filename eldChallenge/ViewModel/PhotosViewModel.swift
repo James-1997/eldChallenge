@@ -17,21 +17,21 @@ class PhotoViewModel {
   public let photoManager = PhotoManager.shared
   internal var photos = [Photo]()
   public var tableVCDelegate = PhotosViewController()
-  public let photoDataManagerObject = PhotoDataManagerObject.shared
+  public let coreDataManagerObject = CoreDataManagerObject.shared
   
   public func fetchPhotos() {
     photos = []
-    if photoDataManagerObject.photos.isEmpty {
+    if coreDataManagerObject.photos.isEmpty {
       DispatchQueue.main.async {
         let photoCollection = self.photoManager.photos
         photoCollection.forEach({ (photo) in
           self.photos.append(photo)
-          self.photoDataManagerObject.savePhotoInCoreData(photo: photo)
+          self.coreDataManagerObject.saveObjectInCoreData(object: photo)
         })
       }
     } else {
       DispatchQueue.main.async {
-        let photoCollection = self.photoDataManagerObject.photos
+        let photoCollection = self.coreDataManagerObject.photos
         photoCollection.forEach({ (photo) in
           self.photos.append(photo)
         })

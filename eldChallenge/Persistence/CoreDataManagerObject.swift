@@ -61,7 +61,27 @@ enum PhotoAttributes: String {
   }
 }
 
-class PhotoDataManagerObject {
+class CoreDataManagerObject {
+  
+  internal enum StatusInCoreData {
+    case recoverError
+    case recoverSucess
+    case notPersistenceData
+    case fetchError
+    
+    var description: String {
+      switch self {
+        case .recoverError:
+          return "Error in data recover!"
+        case .notPersistenceData:
+          return "You don't have data in Persistence"
+        case .fetchError:
+          return "error in fetch operetion!"
+        case .recoverSucess:
+          return "Sucess in data recover! It's %d objects in persistence!"
+      }
+    }
+  }
   
   internal let appDelegate: AppDelegate?
   internal var context: NSManagedObjectContext?
@@ -69,11 +89,11 @@ class PhotoDataManagerObject {
   public var photos = [Photo]()
   private var photosData = [NSManagedObject]()
   
-  private static var privateShared: PhotoDataManagerObject?
+  private static var privateShared: CoreDataManagerObject?
   
-  class var shared: PhotoDataManagerObject {
+  class var shared: CoreDataManagerObject {
     guard let uwShared = privateShared else {
-      privateShared = PhotoDataManagerObject()
+      privateShared = CoreDataManagerObject()
       return privateShared!
     }
     return uwShared
@@ -90,52 +110,61 @@ class PhotoDataManagerObject {
     context = appDelegate?.persistentContainer.viewContext
   }
   
-  public func converteDataInObject(){
+  private func converteDataInObject(){
     for photo in photosData {
       let photo = Photo(photo: photo)
-      //MARK: Convert Data in Image to placeHolderImage and DetailImage
       photos.append(photo)
     }
   }
   
-  public func savePhotoInCoreData(photo: Photo, entity: CoreDataEntity = .Picture) {
+  public func saveObjectInCoreData(object: Any, entity: CoreDataEntity = .Picture) {
     guard let context = context else {
       return
     }
-    let pictureData = NSEntityDescription.insertNewObject(forEntityName: entity.name, into: context)
+    let coreDataObject = NSEntityDescription.insertNewObject(forEntityName: entity.name, into: context)
     
-    pictureData.setValue(photo.title,
-                         forKey: PhotoAttributes.title.Key)
-    pictureData.setValue(photo.thumbnailUrl,
-                         forKey:  PhotoAttributes.thumbnailUrl.Key)
-    pictureData.setValue(photo.url,
-                         forKey: PhotoAttributes.url.Key)
+    if let photo = object as? Photo {
+      coreDataObject.setValue(photo.title,
+                           forKey: PhotoAttributes.title.Key)
+      coreDataObject.setValue(photo.thumbnailUrl,
+                           forKey:  PhotoAttributes.thumbnailUrl.Key)
+      coreDataObject.setValue(photo.url,
+                           forKey: PhotoAttributes.url.Key)
+    } else { return }
     appDelegate?.saveContext(operationName: .save)
   }
   
   public func recoverData(entityName: CoreDataEntity) {
-    let requisition = NSFetchRequest<NSFetchRequestResult>(entityName: entityName.name)
-    do {
-      guard let context = context else {
-        return
-      }
-      let photosDt = try context.fetch(requisition)
-      self.photosData = []
-      if !photosDt.isEmpty {
-        for pht in photosDt as! [NSManagedObject] {
-          self.photosData.append(pht)
-        }
-      }
-      if !self.photosData.isEmpty {
-        print("Sucess in data recover! \n It's \(photosData.count) objects in persistence!")
-//        converteDataInObject()
-      } else {
-        print("You don't have data in Persistence")
-      }
-    } catch {
-      let error = error as NSError
-      print("Error in data recover! \n erro: \(error), description: \(error.localizedDescription), userInfo: \(error.userInfo)")
+    guard let context = context else {
+      return
     }
+    let requisition = NSFetchRequest<NSFetchRequestResult>(entityName: entityName.name)
+    if entityName == .Picture {
+      pictureFetch(context: context, requisition: requisition)
+    }
+  }
+  
+  private func pictureFetch(context: NSManagedObjectContext, requisition: NSFetchRequest<NSFetchRequestResult>) {
+    do {
+           let photosDt = try context.fetch(requisition)
+           self.photosData = []
+           if !photosDt.isEmpty {
+             for pht in photosDt as! [NSManagedObject] {
+               self.photosData.append(pht)
+             }
+           }
+           if !self.photosData.isEmpty {
+             let sucessMessage = String(format: StatusInCoreData.recoverSucess.description,
+                                        photosData.count)
+             statusDescription(status: sucessMessage)
+             converteDataInObject()
+           } else {
+             statusDescription(status: StatusInCoreData.notPersistenceData.description)
+           }
+         } catch {
+           let error = error as NSError
+           statusDescription(status: StatusInCoreData.recoverError.description, error: error)
+         }
   }
   
   private func deleteByObject(element: NSManagedObject) {
@@ -167,9 +196,18 @@ class PhotoDataManagerObject {
       }
     } catch {
       let error = error as NSError
-      print("error in fetch to delete operetion! \n erro: \(error)")
-      return nil
+      statusDescription(status: StatusInCoreData.fetchError.description, error: error)
     }
     return nil
+  }
+}
+
+extension CoreDataManagerObject {
+  public func statusDescription(status: String, error: NSError? = nil) {
+    if let error = error {
+      print(String(format: .statusError, status.description, error, error.localizedDescription, error.userInfo))
+    } else {
+      print(String(format: .format, status.description))
+    }
   }
 }

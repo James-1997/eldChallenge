@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		1D118EB823CECF88005E13D0 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D118EB723CECF88005E13D0 /* PhotoManager.swift */; };
 		1D118EBA23CED0C8005E13D0 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D118EB923CED0C8005E13D0 /* NotificationName.swift */; };
-		1D29043423DBF25A0079F3A5 /* PhotoDataManagerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D29043323DBF25A0079F3A5 /* PhotoDataManagerObject.swift */; };
+		1D29043423DBF25A0079F3A5 /* CoreDataManagerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D29043323DBF25A0079F3A5 /* CoreDataManagerObject.swift */; };
+		1D3CA52D23DFCF8800BCA2EA /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CA52C23DFCF8800BCA2EA /* String.swift */; };
 		1D3FAEDE23CEBE3500B877B9 /* RestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3FAEDD23CEBE3500B877B9 /* RestUtils.swift */; };
 		1D3FAEE023CEC22300B877B9 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3FAEDF23CEC22300B877B9 /* StyleKit.swift */; };
 		1D3FAEE323CEC38900B877B9 /* PhotosViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3FAEE223CEC38900B877B9 /* PhotosViewController+DataSource.swift */; };
@@ -31,7 +32,8 @@
 /* Begin PBXFileReference section */
 		1D118EB723CECF88005E13D0 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		1D118EB923CED0C8005E13D0 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationName.swift; path = eldChallenge/Persistence/NotificationName.swift; sourceTree = SOURCE_ROOT; };
-		1D29043323DBF25A0079F3A5 /* PhotoDataManagerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDataManagerObject.swift; sourceTree = "<group>"; };
+		1D29043323DBF25A0079F3A5 /* CoreDataManagerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerObject.swift; sourceTree = "<group>"; };
+		1D3CA52C23DFCF8800BCA2EA /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		1D3FAEDD23CEBE3500B877B9 /* RestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestUtils.swift; sourceTree = "<group>"; };
 		1D3FAEDF23CEC22300B877B9 /* StyleKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
 		1D3FAEE223CEC38900B877B9 /* PhotosViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosViewController+DataSource.swift"; sourceTree = "<group>"; };
@@ -126,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				1DAF43EF23CE9D6A0064E510 /* CoreDataFunctions.swift */,
-				1D29043323DBF25A0079F3A5 /* PhotoDataManagerObject.swift */,
+				1D29043323DBF25A0079F3A5 /* CoreDataManagerObject.swift */,
 				1DEF0D0823CE9728003DFCC2 /* eldChallenge.xcdatamodeld */,
 			);
 			path = Persistence;
@@ -154,6 +156,7 @@
 			children = (
 				1D3FAEE723CECA3D00B877B9 /* AutoLayout.swift */,
 				1D118EB923CED0C8005E13D0 /* NotificationName.swift */,
+				1D3CA52C23DFCF8800BCA2EA /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,11 +295,12 @@
 				1D3FAEE323CEC38900B877B9 /* PhotosViewController+DataSource.swift in Sources */,
 				1DAF43F923CEB52B0064E510 /* PhotosTableViewCell.swift in Sources */,
 				1DEF0D0023CE9728003DFCC2 /* AppDelegate.swift in Sources */,
+				1D3CA52D23DFCF8800BCA2EA /* String.swift in Sources */,
 				1DEF0D0223CE9728003DFCC2 /* SceneDelegate.swift in Sources */,
 				1D3FAEE023CEC22300B877B9 /* StyleKit.swift in Sources */,
 				1D118EBA23CED0C8005E13D0 /* NotificationName.swift in Sources */,
 				1DAF43F023CE9D6A0064E510 /* CoreDataFunctions.swift in Sources */,
-				1D29043423DBF25A0079F3A5 /* PhotoDataManagerObject.swift in Sources */,
+				1D29043423DBF25A0079F3A5 /* CoreDataManagerObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
